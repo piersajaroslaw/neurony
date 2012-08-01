@@ -1,0 +1,64 @@
+# 2009-03-21 - pierwsza wersja
+# 2009-05-30 - dodane parametry dotyczace ilosci / wielkosci drzewek
+# 2009-06-19 - dodany parametr = prog dlugosci krawedzi powyzej przplyw jest zawsze przyjmowany 
+# 2010-04-?? - dodane parametr sterujący prawdopodobieństwem usunięcia ładunku (przy przepływie
+#              przez długą krawędź)
+# 2010-05-?? - dodane mu i sigma^2 - średnia i wariancja startowego ładunku
+# 2010-06-?? - dodana ilosc watkow
+#
+#
+# neurony - pliczek konfiguracyjny
+# dlugosc bufora jest ograniczona przez bodaj 255 :/
+# '#' na poczatku wiersza oznacza komentarz
+#
+# jak sie cos zmieni w programie to mala korekta w parserze a nie trzeba kompilowac 
+# calosci
+#
+# slowko ostrzezenia - nie pokazuj ze jestes madrzejszy niz parser bo... uda sie 
+# i program rozwalisz (parser jest na prawde glupi) :P
+# 
+# 1 linia - 1 parametr
+# 
+# alpha
+2.5
+# maxPos  
+# R 60 + sfera R^3 + alpha=2.5 + zageszczenie=10 >> 113k neuronow
+# R 55 + sfera R^3 + alpha=2.5 + zageszczenie=10 >> 95k neuronow
+# R 35 + sfera R^3 + alpha=2.5 + zageszczenie=10 >> 38k neuronow
+# R 33 + sfera R^3 + alpha=2.5 + zageszczenie=10 >> 34k neuronow
+# R 32 + sfera R^3 + alpha=2.5 + zageszczenie=10 >> 32k neuronow
+# R 30 + sfera R^3 + alpha=2.5 + zageszczenie=10 >> 28k neuronow
+# R 28 + sfera R^3 + alpha=2.5 + zageszczenie=10 >> 25k neuronow
+# R 27 + sfera R^3 + alpha=2.5 + zageszczenie=10 >> 22k neuronow
+# R 26 + sfera R^3 + alpha=2.5 + zageszczenie=10 >> 21k neuronow
+# R 25 + sfera R^3 + alpha=2.5 + zageszczenie=10 >> 19k neuronow
+# R 22 + sfera R^3 + alpha=2.5 + zageszczenie=10 >> 15k neuronow
+# R 20 + sfera R^3 + alpha=2.5 + zageszczenie=10 >> 12k neuronow
+# R 15 + sfera R^3 + alpha=2.5 + zageszczenie=10 >> 7k neuronow
+# R 10 + sfera R^3 + alpha=2.5 + zageszczenie=10 >> 3k neuronow
+# R 6 + sfera R^3 + alpha=2.5 + zageszczenie=10 >> 1100 neuronow
+# R 5 + sfera R^3 + alpha=2.5 + zageszczenie=10 >> 800 neuronow
+3
+# typ: 1 = kostka3d, 3 = sfera2d
+3
+# beta
+1000
+# gestosc
+10
+# ilosc iteracji
+5000000
+# ilosc grafow przeplywu ladunku
+1
+# rozmiar grafu przeplywu
+1000
+# prog krawedzi uznawanej za dluga -1<=> zadna nie jest dluga
+-1
+# prawdopodobienstwo usuniecia ladunku przy przeplywie przez dluga krawedz
+0.3
+# ladunek = N(mu, sigma^2)
+# wart oczekiwana, mu
+1000
+# wariancja ladunku, sigma^2
+1000
+# ilosc watkow
+3

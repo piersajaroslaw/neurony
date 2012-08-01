@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"  standalone="yes"?>
+<!--
+<!DOCTYPE ??? PUBLIC "??" 
+"http://www.mat.umk.pl/~piersaj/workspaceNN/NeuronyPhd/NoSuchSite">
+-->
+<config>
+ <desc> Jaroslaw Piersa
+ Geometrical NN Phd simulation master config
+ </desc>
+ <!-- network settings-->
+ <param>
+   <paramname>geometry</paramname>
+   <paramvalue>3</paramvalue>
+ </param>
+ <param>
+  <paramname>radius</paramname>
+  <paramvalue>15</paramvalue>
+ </param>
+ <param>
+  <paramname>neuronsDensity</paramname>
+  <paramvalue>10</paramvalue>
+ </param>
+ <param>
+  <paramname>connectivityAlpha</paramname>
+  <paramvalue>-2.5</paramvalue>
+ </param>
+ <param>
+   <paramname>inverseTemperatureBeta</paramname>
+   <paramvalue>100</paramvalue>
+ </param>
+ <param>
+  <paramname>initialChargeMean</paramname>
+  <paramvalue>500</paramvalue>
+ </param>
+ <param>
+  <paramname>initialChargeVar</paramname>
+  <paramvalue>200</paramvalue>
+ </param>
+<!--
+	int geometry;
+	float radius;
+	float neuronsDensity;
+	float connectivityAlpha;
+	float inverseTemperatureBeta;
+	float initialChargeMean;
+	float initialChargeVar;
+-->
+<!-- dynamics settings -->
+ <param>
+   <paramname>iterationsNumber</paramname>
+   <paramvalue>1000000000</paramvalue>
+ </param>
+  <param>
+   <paramname>longRangeSynapseThreshold</paramname>
+   <paramvalue>-1</paramvalue>
+ </param>
+ <param>
+  <paramname>flagChargeRemovalOnLongSynapse</paramname>
+  <paramvalue>true</paramvalue>
+ </param>
+ <param>
+  <paramname>probabilityOfChargeRemovalOnLongSynapse</paramname>
+  <paramvalue>.1</paramvalue>
+ </param>
+ <param>
+  <paramname>chargeReappear</paramname>
+  <paramvalue>false</paramvalue>
+ </param>
+ <param>
+  <paramname>edgesRemoval</paramname>
+  <paramvalue>true</paramvalue>
+ </param>
+  <param>
+  <paramname>threads_number</paramname>
+  <paramvalue>3</paramvalue>
+ </param>
+<!-- 
+	float longRangeSynapseThreshold;
+	bool flagChargeRemovalOnLongSynapse;
+	float probabilityOfChargeRemovalOnLongSynapse;
+	bool chargeReappear;
+	bool edgesRemoval;
+	int threads_number;
+-->
+<!-- logging settings -->
+ <param>
+   <paramname>useTimestampInFilenames</paramname>
+   <paramvalue>true</paramvalue>
+ </param>
+ <param>
+  <paramname>logMaster</paramname>
+  <paramvalue>true</paramvalue>
+ </param>
+ <param>
+  <paramname>logProgress</paramname>
+  <paramvalue>true</paramvalue>
+ </param>
+ <param>
+  <paramname>useGLmode</paramname>
+  <paramvalue>false</paramvalue>
+ </param>
+<!--
+	char * timestamp;
+	char * confFile;
+	bool useTimestampInFilenames;
+	bool logMaster;
+	bool logProgress;
+	bool useGLmode;
+-->
+<!-- results settings-->
+ <param>
+   <paramname>kohonenEdgesLimit</paramname>
+   <paramvalue>1000</paramvalue>
+ </param>
+ <param>
+   <paramname>calculateSpectrum</paramname>
+   <paramvalue>false</paramvalue>
+ </param>
+ <param>
+  <paramname>calculateSpectrumEvolution</paramname>
+  <paramvalue>false</paramvalue>
+ </param>
+ <param>
+  <paramname>calculateSynapseEvolution</paramname>
+  <paramvalue>true</paramvalue>
+ </param>
+ <param>
+  <paramname>calculateNodesEvolution</paramname>
+  <paramvalue>true</paramvalue>
+ </param>
+ <param>
+  <paramname>calculateDegreeDistribution</paramname>
+  <paramvalue>true</paramvalue>
+ </param>
+ <param>
+  <paramname>calculateClasteringCoeffitientDistribution</paramname>
+  <paramvalue>true</paramvalue>
+ </param>
+ <param>
+  <paramname>calculatePathLengthDistribution</paramname>
+  <paramvalue>true</paramvalue>
+ </param>
+  <param>
+  <paramname>calculatePathLengthDistributionMC</paramname>
+  <paramvalue>false</paramvalue>
+ </param>
+<!--
+	int kohonenEdgesLimit
+	bool calculateSpectrum;
+	bool calculateSpectrumEvolution;
+	bool calculateSynapseEvolution;
+	bool calculateNodesEvolution;
+	bool calculateDegreeDistribution;
+	bool calculatePathLengthDistribution;
+	bool calculateClasteringCoeffitientDistribution;
+	bool calculatePathLengthDistributionMC;
+	
+-->
+</config>
