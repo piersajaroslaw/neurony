@@ -85,9 +85,9 @@ void FailureResiliencyPathLength_Thread::calculateAPL_vs_Attack_or_Random(bool f
 	double upratio = flagRandom ? 0.001 : 0.002;
 
 	if (flagRandom){
-		logJP.timestamp_nl() << "Thread"<< tid << ": Resiliency test: path length on random failures:\n\n";
+		logJP.timestamp_nl() << "Thread"<< tid << ": Resiliency test: path length on random failures:\n";
 	} else {
-		logJP.timestamp_nl() << "Thread"<< tid << ": Resiliency test: path length on attack:\n\n";
+		logJP.timestamp_nl() << "Thread"<< tid << ": Resiliency test: path length on attack:\n";
 	}	// if
 
 	// reset the removed table
