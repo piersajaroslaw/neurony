@@ -190,7 +190,7 @@ void FailureResiliencyPathLength_Thread::calculateAPL_vs_Attack_or_Random(bool f
 		}	// for i
 	}	// while
 
-	if (tid == 0)
+	if (tid == 0){
 		logJP << "\n";
 	} // if
 
