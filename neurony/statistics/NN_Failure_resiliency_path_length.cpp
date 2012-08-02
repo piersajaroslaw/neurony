@@ -114,8 +114,6 @@ void NN_FailureResiliancyPathLength::calculateAPL_FaultTolerance(){
 	}	// for
 
 
-	// TODO collect results!!!
-
 	for(long t=0; t<NUM_THREADS; t++){
 		for (int j=0; j< n->getIloscNeuronow(); j++){
 			if (threadObjects[t]->getAplAtAttack(j) >0){
@@ -151,7 +149,7 @@ void NN_FailureResiliancyPathLength::saveToMfile(){
 	}	// if .. else
 
 
-	logJP.timestamp_nl() << "Failure resiliency: path length: saving results to file "<< filename << " ... ";
+	logJP.timestamp() << ": Failure resiliency: path length: saving results to file "<< filename << " ... ";
 
 	str.open(filename, std::fstream::out );
 
