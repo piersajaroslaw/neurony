@@ -8,7 +8,9 @@
  *  2012-07-20
  *  	written
  *  	or actually copied form another class
- *
+ *  2012-08-02
+ *  	removed verbatim logging
+ *  	a slight fix to auto stepskip
  *
  */
 
@@ -30,9 +32,8 @@ FailureResiliencyPathLength_Thread::FailureResiliencyPathLength_Thread(SiecNeuro
 	startingIndex(startingVertex_),
 	endingIndex(endingVertex_),
 	stepSkip(stepskip_),
-	maxStepskip(100),
-	minStepskip(1)
-
+	minStepskip(1),
+	maxStepskip(100)
 {	// start of constructor body
 
 	pathLengthAtRandomFailure = new double[n->getIloscNeuronow()]; 	// should be endingVertex - startingVertex +1
@@ -74,21 +75,34 @@ void FailureResiliencyPathLength_Thread::calculateAPL_vs_Attack_or_Random(bool f
 	int c = 10;
 	int iters = c * n->getIloscNeuronow();
 	int removedIndex = 0;
-	double val = -1, prevVal = -1;
+	double val = -1;
+	char mark = '#';
 //	int d = 500;
 	int localStepskip = stepSkip;
 	if (flagRandom == false){
 		localStepskip /= 4;
 	}	// fi
 
-	double downratio = flagRandom ? 0.025 : 0.050;
-	double upratio = flagRandom ? 0.001 : 0.002;
+	unsigned int thres1 = n->getIloscNeuronow() / 2;
+	unsigned int thres2 = n->getIloscNeuronow() / 4;
+
+//	double downratio = flagRandom ? 0.025 : 0.050;
+//	double upratio = flagRandom ? 0.001 : 0.002;
+
+
+	char buff[250];
 
 	if (flagRandom){
-		logJP.timestamp_nl() << "Thread"<< tid << ": Resiliency test: path length on random failures:\n";
+
+		sprintf(buff, "  Thread %d: Resiliency test: path length on random failures:\n", tid);
 	} else {
-		logJP.timestamp_nl() << "Thread"<< tid << ": Resiliency test: path length on attack:\n";
+		sprintf(buff, "  Thread %d: Resiliency test: path length on attacks:\n", tid);
 	}	// if
+
+
+	if (tid == 0){
+		logJP.timestamp() << buff;
+	}	// fi
 
 	// reset the removed table
 	for (int i=0; i<n->getIloscNeuronow(); ++i){
@@ -100,6 +114,7 @@ void FailureResiliencyPathLength_Thread::calculateAPL_vs_Attack_or_Random(bool f
 		int rem = flagRandom ? frt->getIndexOfRemovedNode_Random()[index] : frt->getIndexOfRemovedNode_Attack()[index];
 		isNeuronRemoved[rem] = true;
 	}	// for
+
 
 
 	// index runs from 0 till end by one
@@ -116,9 +131,15 @@ void FailureResiliencyPathLength_Thread::calculateAPL_vs_Attack_or_Random(bool f
 		startingVertex = flagRandom ? frt->getIndexOfLargestComponent_Random()[index] : frt->getIndexOfLargestComponent_Attack()[index];
 
 		if (startingVertex <0){
+
+#if 0
+			// removed the debug plot
 			std::cout<< "thread "<< tid <<" ending relisiency test with step "<< index <<"\n";
+#endif
+
 			return;
-		}
+		}	// if
+
 
 
 		// if it is my step to calculate
@@ -133,19 +154,29 @@ void FailureResiliencyPathLength_Thread::calculateAPL_vs_Attack_or_Random(bool f
 				pathLengthAtAttack[index] = val;
 			}	// if
 
+#if 0
 			logJP << "t"<<tid  <<": step = "<< index << " component size = " << neuronsInConnectedComponent.size()
 					<< " starting index = " << startingIndex <<" " <<"  apl MC = "<< val<<"\n";
 
+#endif
+
+
+			if (neuronsInConnectedComponent.size() > thres1){
+				localStepskip = 2*stepSkip;
+				mark = '#';
+			} else if (neuronsInConnectedComponent.size() > thres2) {
+				localStepskip = stepSkip;
+				mark = '@';
+			} else {
+				localStepskip = stepSkip / 2;
+				mark = '^';
+			}	// else
 
 //			Progress logging :P
-//			if (tid == 0){
-//				logJP << "#";
-//			}	// fi
+			if (tid == 0){
+				logJP << mark;
+			}	// fi
 		}	// if
-
-		// if (currAPL >1.25 startingApl)
-		// localStepskip = .5 localstepskip
-		// once only!
 
 		// This is after the first node calculated
 		for (int i=0; i<=localStepskip+1; i++){
@@ -157,36 +188,11 @@ void FailureResiliencyPathLength_Thread::calculateAPL_vs_Attack_or_Random(bool f
 			}	// if
 			index++;
 		}	// for i
-
-
-		// TODO update stepskip?
 	}	// while
 
-
-////
-
-
-//		double valRatio = ( (prevVal<0? val*1.01 : prevVal) - val) / val;
-//		valRatio = valRatio >=0 ? valRatio : -valRatio;
-//		if (valRatio > downratio && localStepskip >minStepskip){
-//			localStepskip /=2;
-//		} else if ( valRatio < upratio && localStepskip <=maxStepskip){
-//			localStepskip *= 2;
-//		}	// fi
-//		prevVal = val;
-//
-//
-//		// this trick will remove additional (stepSkip) nodes at one step
-//		// This is after the first node calculated
-//		for (int i=0; i<localStepskip; i++){
-//
-//			removedIndex = flagRandom ? frt->getIndexOfRemovedNode_Random()[index] : frt->getIndexOfRemovedNode_Attack()[index];
-//
-//			if (removedIndex >=0 && removedIndex < n->getIloscNeuronow()){
-//				isNeuronRemoved[removedIndex] = true;
-//			}	// if
-//			index++;
-//		}	// for i
+	if (tid == 0)
+		logJP << "\n";
+	} // if
 
 }	// calculateAPL_vs_Arrack_or_Random()
 
