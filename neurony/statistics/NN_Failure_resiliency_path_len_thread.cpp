@@ -77,14 +77,16 @@ void FailureResiliencyPathLength_Thread::calculateAPL_vs_Attack_or_Random(bool f
 	int removedIndex = 0;
 	double val = -1;
 	char mark = '#';
-//	int d = 500;
-	int localStepskip = stepSkip;
-	if (flagRandom == false){
-		localStepskip /= 4;
-	}	// fi
 
-	unsigned int thres1 = n->getIloscNeuronow() / 2;
-	unsigned int thres2 = n->getIloscNeuronow() / 4;
+//	int d = 500;
+
+	int localStepskip = stepSkip;
+//	if (flagRandom == false){
+//		localStepskip /= 4;
+//	}	// fi
+
+	int thres1 = flagRandom ? n->getIloscNeuronow() / 2 : n->getIloscNeuronow() / 5; // double jumps below this
+	int thres2 = flagRandom ? 3 * n->getIloscNeuronow() / 4 : 1 * n->getIloscNeuronow() / 4; // half jumps above this
 
 //	double downratio = flagRandom ? 0.025 : 0.050;
 //	double upratio = flagRandom ? 0.001 : 0.002;
@@ -93,7 +95,6 @@ void FailureResiliencyPathLength_Thread::calculateAPL_vs_Attack_or_Random(bool f
 	char buff[250];
 
 	if (flagRandom){
-
 		sprintf(buff, "  Thread %d: Resiliency test: path length on random failures:\n", tid);
 	} else {
 		sprintf(buff, "  Thread %d: Resiliency test: path length on attacks:\n", tid);
@@ -153,30 +154,30 @@ void FailureResiliencyPathLength_Thread::calculateAPL_vs_Attack_or_Random(bool f
 			} else {
 				pathLengthAtAttack[index] = val;
 			}	// if
-
-#if 0
+#if 1
 			logJP << "t"<<tid  <<": step = "<< index << " component size = " << neuronsInConnectedComponent.size()
 					<< " starting index = " << startingIndex <<" " <<"  apl MC = "<< val<<"\n";
 
 #endif
-
-
-			if (neuronsInConnectedComponent.size() > thres1){
-				localStepskip = 2*stepSkip;
-				mark = '#';
-			} else if (neuronsInConnectedComponent.size() > thres2) {
-				localStepskip = stepSkip;
-				mark = '@';
-			} else {
-				localStepskip = stepSkip / 2;
-				mark = '^';
-			}	// else
-
-//			Progress logging :P
-			if (tid == 0){
-				logJP << mark;
-			}	// fi
 		}	// if
+
+
+		// index = current step
+		if (index < thres1){
+			localStepskip = 2*stepSkip;
+			mark = '#';
+		} else if (index < thres2) {
+			localStepskip = stepSkip;
+			mark = '@';
+		} else {
+			localStepskip = stepSkip / 2;
+			mark = '^';
+		}	// else
+
+		// Progress logging :P
+		if (tid == 0){
+			logJP << mark;
+		}	// fi
 
 		// This is after the first node calculated
 		for (int i=0; i<=localStepskip+1; i++){
