@@ -77,10 +77,6 @@ void FailureResiliencyPathLength_Thread::calculateAPL_vs_Attack_or_Random(bool f
 	int removedIndex = 0;
 	double val = -1;
 	char mark = '#';
-<<<<<<< HEAD
-
-=======
->>>>>>> 4bc3be897e7c1b721ed6ef1854c93dab1d34c765
 //	int d = 500;
 
 	int localStepskip = stepSkip;
@@ -94,23 +90,11 @@ void FailureResiliencyPathLength_Thread::calculateAPL_vs_Attack_or_Random(bool f
 //	double downratio = flagRandom ? 0.025 : 0.050;
 //	double upratio = flagRandom ? 0.001 : 0.002;
 
-<<<<<<< HEAD
-=======
-	unsigned int thres1 = n->getIloscNeuronow() / 2;
-	unsigned int thres2 = n->getIloscNeuronow() / 4;
 
-//	double downratio = flagRandom ? 0.025 : 0.050;
-//	double upratio = flagRandom ? 0.001 : 0.002;
-
->>>>>>> 4bc3be897e7c1b721ed6ef1854c93dab1d34c765
 
 	char buff[250];
 
 	if (flagRandom){
-<<<<<<< HEAD
-=======
-
->>>>>>> 4bc3be897e7c1b721ed6ef1854c93dab1d34c765
 		sprintf(buff, "  Thread %d: Resiliency test: path length on random failures:\n", tid);
 	} else {
 		sprintf(buff, "  Thread %d: Resiliency test: path length on attacks:\n", tid);
@@ -154,11 +138,7 @@ void FailureResiliencyPathLength_Thread::calculateAPL_vs_Attack_or_Random(bool f
 			std::cout<< "thread "<< tid <<" ending relisiency test with step "<< index <<"\n";
 #endif
 
-<<<<<<< HEAD
 			break;
-=======
-			return;
->>>>>>> 4bc3be897e7c1b721ed6ef1854c93dab1d34c765
 		}	// if
 
 
@@ -174,16 +154,11 @@ void FailureResiliencyPathLength_Thread::calculateAPL_vs_Attack_or_Random(bool f
 			} else {
 				pathLengthAtAttack[index] = val;
 			}	// if
-<<<<<<< HEAD
-=======
-
->>>>>>> 4bc3be897e7c1b721ed6ef1854c93dab1d34c765
 #if 0
 			logJP << "t"<<tid  <<": step = "<< index << " component size = " << neuronsInConnectedComponent.size()
 					<< " starting index = " << startingIndex <<" " <<"  apl MC = "<< val<<"\n";
 
 #endif
-<<<<<<< HEAD
 		}	// if
 
 
@@ -204,27 +179,6 @@ void FailureResiliencyPathLength_Thread::calculateAPL_vs_Attack_or_Random(bool f
 			logJP << mark;
 		}	// fi
 
-=======
-
-
-			if (neuronsInConnectedComponent.size() > thres1){
-				localStepskip = 2*stepSkip;
-				mark = '#';
-			} else if (neuronsInConnectedComponent.size() > thres2) {
-				localStepskip = stepSkip;
-				mark = '@';
-			} else {
-				localStepskip = stepSkip / 2;
-				mark = '^';
-			}	// else
-
-//			Progress logging :P
-			if (tid == 0){
-				logJP << mark;
-			}	// fi
-		}	// if
-
->>>>>>> 4bc3be897e7c1b721ed6ef1854c93dab1d34c765
 		// This is after the first node calculated
 		for (int i=0; i<=localStepskip+1; i++){
 
@@ -236,16 +190,11 @@ void FailureResiliencyPathLength_Thread::calculateAPL_vs_Attack_or_Random(bool f
 			index++;
 		}	// for i
 	}	// while
+
 	if (tid == 0){
 		logJP << "\n";
 	} // if
 
-<<<<<<< HEAD
-=======
-	if (tid == 0)
-		logJP << "\n";
-	} // if
->>>>>>> 4bc3be897e7c1b721ed6ef1854c93dab1d34c765
 
 }	// calculateAPL_vs_Arrack_or_Random()
 
