@@ -138,7 +138,7 @@ void FailureResiliencyPathLength_Thread::calculateAPL_vs_Attack_or_Random(bool f
 			std::cout<< "thread "<< tid <<" ending relisiency test with step "<< index <<"\n";
 #endif
 
-			return;
+			break;
 		}	// if
 
 
@@ -154,7 +154,7 @@ void FailureResiliencyPathLength_Thread::calculateAPL_vs_Attack_or_Random(bool f
 			} else {
 				pathLengthAtAttack[index] = val;
 			}	// if
-#if 1
+#if 0
 			logJP << "t"<<tid  <<": step = "<< index << " component size = " << neuronsInConnectedComponent.size()
 					<< " starting index = " << startingIndex <<" " <<"  apl MC = "<< val<<"\n";
 
@@ -190,10 +190,10 @@ void FailureResiliencyPathLength_Thread::calculateAPL_vs_Attack_or_Random(bool f
 			index++;
 		}	// for i
 	}	// while
-
 	if (tid == 0){
 		logJP << "\n";
 	} // if
+
 
 }	// calculateAPL_vs_Arrack_or_Random()
 
