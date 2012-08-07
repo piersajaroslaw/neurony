@@ -25,7 +25,6 @@
 #include <cstdlib>
 #include "siecNeuronowaPLD.h"
 #include "../../config/simulationMasterConfig.h"
-#include "../../../src/logger.h"
 
 
 

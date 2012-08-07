@@ -37,7 +37,6 @@
 #include "siecNeuronowa.h"
 #include <cstdio>
 #include <cstdlib>
-#include "../../src/logger.h"
 //#include "parserKonfiguracji.h"
 
 

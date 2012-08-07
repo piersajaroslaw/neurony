@@ -8,7 +8,7 @@
 #ifndef SIECNEURONOWAROZKLADSTOPNI_H_
 #define SIECNEURONOWAROZKLADSTOPNI_H_
 
-#include "../siecNeuronowaDynamika.h"
+#include "../dynamics/siecNeuronowaDynamika.h"
 
 
 class SiecNeuronowaRozkladStopni {

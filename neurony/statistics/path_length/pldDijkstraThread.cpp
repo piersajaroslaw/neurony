@@ -23,8 +23,7 @@
  *  	now it only requires a SN instead of SND
  */
 #include "pldDijkstraThread.h"
-#include "../../../src/BinaryHeap.h"
-#include "../../../src/logger.h"
+#include "../../utils/BinaryHeap.h"
 
 PldDijkstraThread::PldDijkstraThread(SiecNeuronowa *n_, int tid_, int t_num_, int svertex_, int evertex_):
 	n(n_),

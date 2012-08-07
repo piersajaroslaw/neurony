@@ -8,7 +8,7 @@
 
 
 #include "simulationConfigTxtParser.h"
-#include "../../src/logger.h"
+#include "../utils/logger.h"
 #include <cstdlib>
 #include <iostream>
 

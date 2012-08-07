@@ -10,12 +10,12 @@
 #include <cstdio>
 #include <cstdlib>
 #include <ctime>
-#include "logger.h"
+#include "../neurony/utils/logger.h"
 
 
 //#include "wyswietlanie.h"
 
-#include "../neurony/siecNeuronowaDynamika.h"
+#include "../neurony/dynamics/siecNeuronowaDynamika.h"
 
 #include "../neurony/statistics/siecNeuronowaRozkladStopni.h"
 #include "../neurony/statistics/siecNeuronowaCC.h"
@@ -24,7 +24,6 @@
 #include "../neurony/statistics/NN_network_degeneracy.h"
 
 
-#include "../neurony/fileWriter.h"
 #include "../neurony/GraphER.h"
 
 #include "../neurony/statistics/path_length/siecNeuronowaPLD.h"

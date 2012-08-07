@@ -1,0 +1,5 @@
+#gitignote
+Debug/*
+wyniki/*
+Neurony_PHD
+logNeurony*

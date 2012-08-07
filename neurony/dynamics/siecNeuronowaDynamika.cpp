@@ -81,13 +81,11 @@
 #include <cstdlib>
 
 #include "siecNeuronowaDynamika.h"
-#include "verticesEvolutionSaver.h"
+#include "simulationProgressLogger.h"
 
-#include "../src/logger.h"
-#include "../src/simulationProgressLogger.h"
-#include "config/parserKonfiguracji.h"
-
-#include "statistics/spectrum/spektrumGrafuLapack.h"
+#include "../visualisation/verticesEvolutionSaver.h"
+#include "../config/parserKonfiguracji.h"
+#include "../statistics/spectrum/spektrumGrafuLapack.h"
 
 SiecNeuronowaDynamika * siecNeuronowaDynamikaGlobalna = NULL;
 

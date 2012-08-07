@@ -26,7 +26,6 @@
 #include <cstdlib>
 #include "ctime"
 #include <pthread.h>
-#include "../../../src/logger.h"
 #include "GraphErPaths.h"
 
 void * threadStartup(void *);

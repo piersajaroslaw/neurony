@@ -6,7 +6,7 @@
  */
 
 #include "GraphErDijkstra.h"
-#include "../../../src/logger.h"
+#include "../../utils/logger.h"
 
 /* This class is ctrl+c-ctrl+v'ed from Dijkstra calcluation thread.
  * Operates on sole graph, not embedded into a neural network

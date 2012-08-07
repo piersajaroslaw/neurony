@@ -10,7 +10,6 @@
 #include <cstdio>
 
 #include "siecNeuronowaAPL.h"
-#include "../../../src/logger.h"
 
 
 #ifdef WITH_APL

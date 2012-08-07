@@ -15,7 +15,7 @@
 #ifndef POLACZENIE_H_
 #define POLACZENIE_H_
 
-#include "../../src/funkcjeLosowe.h"
+#include "../utils/funkcjeLosowe.h"
 
 /* Polaczenie miedzy dwoma neuronami
  * neurony pamietane jako indeksy (a nie jako wskazniki / referencje)

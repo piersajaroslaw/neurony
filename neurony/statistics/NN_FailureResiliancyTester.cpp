@@ -24,7 +24,6 @@
 #include <iostream>
 
 #include "NN_FailureResiliancyTester.h"
-#include "../../src/logger.h"
 /*
  */
 

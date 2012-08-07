@@ -14,7 +14,6 @@
  *  	some crazy bug fixed
  */
 #include "siecNeuronowaCC.h"
-#include "../../src/logger.h"
 
 SiecNeuronowaCC::SiecNeuronowaCC(SiecNeuronowaDynamika &n_):
 	n(n_)

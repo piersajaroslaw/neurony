@@ -15,8 +15,8 @@
 #ifndef VERTICESEVOLUTIONSAVER_H_
 #define VERTICESEVOLUTIONSAVER_H_
 
-#include "fileWriter.h"
-#include "network/siecNeuronowa.h"
+#include "../utils/fileWriter.h"
+#include "../network/siecNeuronowa.h"
 
 class VerticesEvolutionSaver{
 

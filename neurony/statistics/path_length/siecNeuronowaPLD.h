@@ -8,7 +8,7 @@
  */
 
 
-#include "../../siecNeuronowaDynamika.h"
+#include "../../dynamics/siecNeuronowaDynamika.h"
 
 class SiecNeuronowaPLD{
 private:

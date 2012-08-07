@@ -7,7 +7,6 @@
 
 
 #include "GraphER.h"
-#include "../src/funkcjeLosowe.h"
 
 /* this()
  */

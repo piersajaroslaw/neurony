@@ -15,9 +15,8 @@
 #ifndef SIMMULATIONPROGRESSLOGGER_H_
 #define SIMMULATIONPROGRESSLOGGER_H_
 
-//#include "../neurony/siecNeuronowa.h"
 
-#include "../neurony/siecNeuronowaDynamika.h"
+#include "siecNeuronowaDynamika.h"
 
 
 class SimulationProgresLogger{

@@ -117,7 +117,8 @@
 
 #include "neuron.h"
 #include "polaczenie.h"
-#include "../pairOfInts.h"
+#include "../utils/pairOfInts.h"
+#include "../utils/logger.h"
 #include "../config/simulationMasterConfig.h"
 
 extern int NUM_THREADS;
