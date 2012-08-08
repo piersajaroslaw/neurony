@@ -22,6 +22,7 @@
 #include "../neurony/statistics/NN_FailureResiliancyTester.h"
 #include "../neurony/statistics/NN_Failure_resiliency_path_length.h"
 #include "../neurony/statistics/NN_network_degeneracy.h"
+#include "../neurony/statistics/degree_corelation/NN_DegreeCorrelationTester.h"
 
 
 #include "../neurony/GraphER.h"
@@ -159,6 +160,14 @@ int main(int argc, char ** argv) {
 		logJP << "NN_DegeneracyTester: Degeneracy test was disabled\n";
 	}	// if
 
+	if ( n.getConfig()->getCalculateDegreeCorrelation() ){
+		NN_DegreeCorrelationTester * nndc =  new NN_DegreeCorrelationTester(&n);
+		nndc -> calculateDegreeCorrelation();
+
+		delete nndc;
+	}	else {
+		logJP << "NN_DegreeCorrelationTester: Degree Correlation Test was disabled\n";
+	}	// if
 
 	// Eigs
 #ifdef WITH_LAPACK

@@ -248,4 +248,7 @@ void SimulationConfigTxtParser::setMasterConfigEntryResultsSettings(std::string 
 	if (paramname == "calculateNetworkDegeneracy"){
 		conf->setCalculateNetworkDegeneracy(atob(paramval));
 	}
+	if (paramname == "calculateDegreeCorrelation"){
+		conf->setCalculateDegreeCorrelation(atob(paramval));
+	}
 }	// setMasterConfigEntryResultsSettings()

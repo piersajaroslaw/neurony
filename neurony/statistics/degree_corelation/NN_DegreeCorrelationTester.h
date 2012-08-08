@@ -15,7 +15,7 @@
  *
  * degree of k say = <k>    or   d_k
  *
- * Assortativity =  E(X - EX)(Y-EY) / \sqrt(D^2X  D^2Y)
+ * Corr(X,Y) =  E(X - EX)(Y-EY) / \sqrt(D^2X  D^2Y)
  *
  *
  *
@@ -34,14 +34,36 @@ class NN_DegreeCorrelationTester{
 
 private:
 	SiecNeuronowa * n;
+	int * degreeInFunctionalGraph;
+
+	// TODO reconsider...
+	// distribution od degrees
+	// for each neuron n_i: ( deg(n_i), avg(deg(neighbours of n_i)))
+	// and correlation of this data
 
 public:
 	NN_DegreeCorrelationTester(SiecNeuronowa *);
 	~NN_DegreeCorrelationTester();
 
+
+
+
 	void calculateDegreeCorrelation();
 
 private:
+
+	/*       1/M * \sum_i j_i * k*i  - (1/M 1/2 \sum_i (j_i + k_i) )^2
+	 *  r = ----------------------------------------------------------
+	 *       1/M 1/2 \sum_i (j_i^2 + k_i^2) - (1/M 1/2 \sum_i (j_i + k_i)^2 )^2
+	 *
+	 *   i = edge / sum over all edges
+	 *   j_i, k_i = degree of the vertices incident to edge i (in functional graph)
+	 *
+	 */
+	double calculatePearsonDegreeCorrelationCoefficient();
+
+	void recalculateDegreesInFunctionalGraph();
+
 	void saveToMFile();
 
 };	// class
