@@ -102,7 +102,7 @@ void SiecNeuronowaCC::zapiszRozkladCCStopniDoPliku(){
 				getN().getN().getConfig()->getResultsFolder(),
 				getN().getN().getTimestamp(),
 				getN().getIloscNeuronow()/1000,
-				getN().getIloscKrawedzi()/10000000,
+				getN().getIloscKrawedzi()/1000000,
 				getN().getIlIteracji() / 1000000 );
 	} else {
 		sprintf(filename, "%s/rozkladCC.m", n.getN().getConfig()->getResultsFolder());

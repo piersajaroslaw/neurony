@@ -35,6 +35,12 @@ class NN_DegreeCorrelationTester{
 private:
 	SiecNeuronowa * n;
 	int * degreeInFunctionalGraph;
+	int * degreeVsAvgDegree_Deg;
+	double * degreeVsAvgDegree_Avg;
+
+	int edgesNum;
+
+	std::fstream str;
 
 	// TODO reconsider...
 	// distribution od degrees
@@ -62,9 +68,17 @@ private:
 	 */
 	double calculatePearsonDegreeCorrelationCoefficient();
 
+	double calculateDegVsAverageDegree();
+
+
 	void recalculateDegreesInFunctionalGraph();
 
 	void saveToMFile();
+
+	void saveToMFile_generateHeader();
+	void saveToMFile_generateData();
+	void saveToMFile_generateFooter();
+
 
 };	// class
 
