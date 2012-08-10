@@ -11,11 +11,11 @@
  *  	minor debugging
  *  	saving degrees scatterplot to .m file
  *  	added neuron degree vs avg degree of its neighbours (x,y) and saving to m-file
+ *  2012-08-10
+ *  	Minor (??) bug fixed
+ *  	Ok it was iterations for i=0 to neurons number instead of i=0 to edges number
+ *  	it was _not_ minor :P
  *
- *
- *
- * TODO some segfault was here??
- *  I Thing I got rid of this segfoult...
  */
 
 #include "NN_DegreeCorrelationTester.h"
@@ -75,19 +75,22 @@ void NN_DegreeCorrelationTester::recalculateDegreesInFunctionalGraph(){
 
 
 double NN_DegreeCorrelationTester::calculatePearsonDegreeCorrelationCoefficient(){
-	// TODO something is wrong with this formula...
 	if (degreeInFunctionalGraph == NULL){
 		recalculateDegreesInFunctionalGraph();
 	}	// fi
 
 
-	double sjk = 0, sj2k2=0, spjk = 0;
+//	double sjk = 0, sj2k2=0, spjk = 0;
+	double sj = 0;
 	// sum (j+k) ; sum (j^2 + k^2) ; sum j*p respectively
 
 
+
+
 	int ij = -1, ik =-1;
+
 	// index of j and k
-	for (int i=0; i< n->getIloscNeuronow(); i++){
+	for (int i=0; i< n->getIloscKrawedzi(); i++){
 		Polaczenie & e = n->getKrawedz(i);
 		if (e.getSumaLadunku()< n->getConfig()->getKohonenChargeThreshold() ){
 			continue;
@@ -101,20 +104,87 @@ double NN_DegreeCorrelationTester::calculatePearsonDegreeCorrelationCoefficient(
 		ik = e.getIndeks2();
 
 
-		sjk += degreeInFunctionalGraph[ij] + degreeInFunctionalGraph[ik];
-		sj2k2 += degreeInFunctionalGraph[ij] * degreeInFunctionalGraph[ij]
-		         + degreeInFunctionalGraph[ik] * degreeInFunctionalGraph[ik];;
-		spjk += degreeInFunctionalGraph[ij] * degreeInFunctionalGraph[ik];
+		sj += degreeInFunctionalGraph[ij] + degreeInFunctionalGraph[ik];
 	}	// for i
 
 	double m1 = 1.0 / edgesNum;
+	double EJ = sj * 0.5 *m1;
+	double s_x_ex_y_ey = 0;
+	double s_x_ex_2 = 0;
+//	double s_y_ey_2 = 0;
+	int count = 0;
+
+	// index of j and k
+	for (int i=0; i< n->getIloscKrawedzi(); i++){
+		Polaczenie & e = n->getKrawedz(i);
+		if (e.getSumaLadunku() <  n->getConfig()->getKohonenChargeThreshold() ){
+			continue;
+		}	// fi
+
+		if (e.getIndeks1() == e.getIndeks2()){
+			continue;
+		}	// fi
+
+		ij = e.getIndeks1();
+		ik = e.getIndeks2();
+
+
+		s_x_ex_y_ey +=  (degreeInFunctionalGraph[ij] - EJ ) * (degreeInFunctionalGraph[ik] - EJ)
+				+ (degreeInFunctionalGraph[ik] - EJ ) * (degreeInFunctionalGraph[ij] - EJ);
+
+		s_x_ex_2  += (degreeInFunctionalGraph[ij] - EJ ) * (degreeInFunctionalGraph[ij] - EJ )
+				+ (degreeInFunctionalGraph[ik] - EJ ) * (degreeInFunctionalGraph[ik] - EJ );
+//		s_y_ey_2  += (degreeInFunctionalGraph[ij] - EJ ) * (degreeInFunctionalGraph[ij] - EJ )
+//				+ (degreeInFunctionalGraph[ik] - EJ ) * (degreeInFunctionalGraph[ik] - EJ );
+
+		count +=2;
+
+	}	// for i
+
+	double sc = 1.0 / count;
+
+	double E_x_ex_y_ey =  sc* s_x_ex_y_ey;
+	double E_x_ex_2 =  sc *  s_x_ex_2;
+//	double E_y_ey_2 = sc *  s_y_ey_2;
+
+	double ret =  E_x_ex_y_ey /E_x_ex_2;
+
+//	logJP << "\ncount = "<< count << "\n"
+//			"\nE(x-Ex)(y-Ey)= " << E_x_ex_y_ey <<
+//			"\nD^2 X = "<< E_x_ex_2
+//			<<"\nD^2 Y = "<< E_y_ey_2 << "\n";
+//	logJP << "corr(X,Y) = "<<  E_x_ex_y_ey /E_x_ex_2  << "\n";
+
+
+
+//	// index of j and k
+//	for (int i=0; i< n->getIloscKrawedzi(); i++){
+//		Polaczenie & e = n->getKrawedz(i);
+//		if (e.getSumaLadunku()< n->getConfig()->getKohonenChargeThreshold() ){
+//			continue;
+//		}	// fi
+//
+//		if (e.getIndeks1() == e.getIndeks2()){
+//			continue;
+//		}	// fi
+//
+//		ij = e.getIndeks1();
+//		ik = e.getIndeks2();
+//
+//
+//		sjk += degreeInFunctionalGraph[ij] + degreeInFunctionalGraph[ik];
+//		sj2k2 += degreeInFunctionalGraph[ij] * degreeInFunctionalGraph[ij]
+//		         + degreeInFunctionalGraph[ik] * degreeInFunctionalGraph[ik];
+//		spjk += degreeInFunctionalGraph[ij] * degreeInFunctionalGraph[ik];
+//	}	// for i
+
 
 	// after Newman, Assortative Mixing in Networks
 	// Physical Review Letters, 2002, Nov
-	double ret = (m1 * spjk - m1 * m1 * 0.25 * sjk * sjk )
-			/ (m1 *.5 * sj2k2 - m1 * m1 * 0.25 * sjk * sjk );
-
-	logJP << "\nsjk = " << sjk << "\nsj2k2 = "<< sj2k2 <<"\nspjk = "<< spjk << "\n";
+//	double ret = (m1 * 2 * spjk - m1 * m1 * 0.25 * 4 * sjk * sjk )
+//			/ (m1 *.5 * 2 *  sj2k2 - m1 * m1 * 0.25 * 4 * sjk * sjk );
+//
+//	logJP << "\nsjk = " << sjk << "\nsj2k2 = "<< sj2k2 <<"\nspjk = "<< spjk << "\n";
 
 	return ret;
 }	// calculatePearsonDegreeCorrelationCoefficient()
@@ -221,6 +291,9 @@ void NN_DegreeCorrelationTester::saveToMFile_generateHeader(){
 
 void NN_DegreeCorrelationTester::saveToMFile_generateData(){
 	str << "\n\n Degrees = [\n";
+
+	int count = 0;
+
 	for (int i=0; i<n->getIloscKrawedzi(); i++){
 		Polaczenie & e = n->getKrawedz(i);
 		if (e.getSumaLadunku()>= n->getConfig()->getKohonenChargeThreshold()
@@ -232,6 +305,7 @@ void NN_DegreeCorrelationTester::saveToMFile_generateData(){
 			str		<< "  " << degreeInFunctionalGraph[e.getIndeks2()] << " , "
 					<<  degreeInFunctionalGraph[e.getIndeks1()] << "\n";
 
+			count +=2;
 		}	// fi
 	}	// for all edges
 
@@ -244,6 +318,8 @@ void NN_DegreeCorrelationTester::saveToMFile_generateData(){
 	}	// for all edges
 
 	str << " ]; % deg vs avg deg \n\n";
+
+	logJP << "wrote "<< count <<"entries \n";
 }	// saveToMFile_generateData()
 
 
