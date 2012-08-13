@@ -13,9 +13,13 @@
  *  	added neuron degree vs avg degree of its neighbours (x,y) and saving to m-file
  *  2012-08-10
  *  	Minor (??) bug fixed
- *  	Ok it was iterations for i=0 to neurons number instead of i=0 to edges number
+ *  	Ok, it was iterations for i=0 to neuronsNumber instead of i=0 to edgesNumber
  *  	it was _not_ minor :P
  *
+ *
+ * TODO:
+ * 		Pearson Correlation Coefficient of the deg vs avg deg data ??
+ * 		correlation coefficients vs positive and negative weigth of the synapse ??
  */
 
 #include "NN_DegreeCorrelationTester.h"
@@ -80,7 +84,10 @@ double NN_DegreeCorrelationTester::calculatePearsonDegreeCorrelationCoefficient(
 	}	// fi
 
 
-//	double sjk = 0, sj2k2=0, spjk = 0;
+#if 0
+	double sjk = 0, sj2k2=0, spjk = 0;
+#endif
+
 	double sj = 0;
 	// sum (j+k) ; sum (j^2 + k^2) ; sum j*p respectively
 
@@ -149,42 +156,44 @@ double NN_DegreeCorrelationTester::calculatePearsonDegreeCorrelationCoefficient(
 
 	double ret =  E_x_ex_y_ey /E_x_ex_2;
 
-//	logJP << "\ncount = "<< count << "\n"
-//			"\nE(x-Ex)(y-Ey)= " << E_x_ex_y_ey <<
-//			"\nD^2 X = "<< E_x_ex_2
-//			<<"\nD^2 Y = "<< E_y_ey_2 << "\n";
-//	logJP << "corr(X,Y) = "<<  E_x_ex_y_ey /E_x_ex_2  << "\n";
+#if 0
+	logJP << "\ncount = "<< count << "\n"
+			"\nE(x-Ex)(y-Ey)= " << E_x_ex_y_ey <<
+			"\nD^2 X = "<< E_x_ex_2
+			<<"\nD^2 Y = "<< E_y_ey_2 << "\n";
+	logJP << "corr(X,Y) = "<<  E_x_ex_y_ey /E_x_ex_2  << "\n";
 
 
 
 //	// index of j and k
-//	for (int i=0; i< n->getIloscKrawedzi(); i++){
-//		Polaczenie & e = n->getKrawedz(i);
-//		if (e.getSumaLadunku()< n->getConfig()->getKohonenChargeThreshold() ){
-//			continue;
-//		}	// fi
-//
-//		if (e.getIndeks1() == e.getIndeks2()){
-//			continue;
-//		}	// fi
-//
-//		ij = e.getIndeks1();
-//		ik = e.getIndeks2();
-//
-//
-//		sjk += degreeInFunctionalGraph[ij] + degreeInFunctionalGraph[ik];
-//		sj2k2 += degreeInFunctionalGraph[ij] * degreeInFunctionalGraph[ij]
-//		         + degreeInFunctionalGraph[ik] * degreeInFunctionalGraph[ik];
-//		spjk += degreeInFunctionalGraph[ij] * degreeInFunctionalGraph[ik];
-//	}	// for i
+	for (int i=0; i< n->getIloscKrawedzi(); i++){
+		Polaczenie & e = n->getKrawedz(i);
+		if (e.getSumaLadunku()< n->getConfig()->getKohonenChargeThreshold() ){
+			continue;
+		}	// fi
+
+		if (e.getIndeks1() == e.getIndeks2()){
+			continue;
+		}	// fi
+
+		ij = e.getIndeks1();
+		ik = e.getIndeks2();
+
+
+		sjk += degreeInFunctionalGraph[ij] + degreeInFunctionalGraph[ik];
+		sj2k2 += degreeInFunctionalGraph[ij] * degreeInFunctionalGraph[ij]
+		         + degreeInFunctionalGraph[ik] * degreeInFunctionalGraph[ik];
+		spjk += degreeInFunctionalGraph[ij] * degreeInFunctionalGraph[ik];
+	}	// for i
 
 
 	// after Newman, Assortative Mixing in Networks
 	// Physical Review Letters, 2002, Nov
-//	double ret = (m1 * 2 * spjk - m1 * m1 * 0.25 * 4 * sjk * sjk )
-//			/ (m1 *.5 * 2 *  sj2k2 - m1 * m1 * 0.25 * 4 * sjk * sjk );
-//
-//	logJP << "\nsjk = " << sjk << "\nsj2k2 = "<< sj2k2 <<"\nspjk = "<< spjk << "\n";
+	double ret = (m1 * 2 * spjk - m1 * m1 * 0.25 * 4 * sjk * sjk )
+			/ (m1 *.5 * 2 *  sj2k2 - m1 * m1 * 0.25 * 4 * sjk * sjk );
+
+	logJP << "\nsjk = " << sjk << "\nsj2k2 = "<< sj2k2 <<"\nspjk = "<< spjk << "\n";
+#endif
 
 	return ret;
 }	// calculatePearsonDegreeCorrelationCoefficient()
