@@ -19,10 +19,11 @@
 
 
 #include <pthread.h>
-#include "network/siecNeuronowa.h"
-#include "verticesEvolutionSaver.h"
-#include "statistics/spectrum/spectrumEvolutionSaver.h"
-#include "synapseEvolutionSaver.h"
+#include "../network/siecNeuronowa.h"
+#include "../visualisation/verticesEvolutionSaver.h"
+#include "../visualisation/synapseEvolutionSaver.h"
+
+#include "../statistics/spectrum/spectrumEvolutionSaver.h"
 
 
 class SiecNeuronowaDynamika{

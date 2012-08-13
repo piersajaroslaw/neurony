@@ -10,21 +10,21 @@
 #include <cstdio>
 #include <cstdlib>
 #include <ctime>
-#include "logger.h"
+#include "../neurony/utils/logger.h"
 
 
 //#include "wyswietlanie.h"
 
-#include "../neurony/siecNeuronowaDynamika.h"
+#include "../neurony/dynamics/siecNeuronowaDynamika.h"
 
 #include "../neurony/statistics/siecNeuronowaRozkladStopni.h"
 #include "../neurony/statistics/siecNeuronowaCC.h"
 #include "../neurony/statistics/NN_FailureResiliancyTester.h"
 #include "../neurony/statistics/NN_Failure_resiliency_path_length.h"
 #include "../neurony/statistics/NN_network_degeneracy.h"
+#include "../neurony/statistics/degree_corelation/NN_DegreeCorrelationTester.h"
 
 
-#include "../neurony/fileWriter.h"
 #include "../neurony/GraphER.h"
 
 #include "../neurony/statistics/path_length/siecNeuronowaPLD.h"
@@ -160,6 +160,14 @@ int main(int argc, char ** argv) {
 		logJP << "NN_DegeneracyTester: Degeneracy test was disabled\n";
 	}	// if
 
+	if ( n.getConfig()->getCalculateDegreeCorrelation() ){
+		NN_DegreeCorrelationTester * nndc =  new NN_DegreeCorrelationTester(&n);
+		nndc -> calculateDegreeCorrelation();
+
+		delete nndc;
+	}	else {
+		logJP << "NN_DegreeCorrelationTester: Degree Correlation Test was disabled\n";
+	}	// if
 
 	// Eigs
 #ifdef WITH_LAPACK

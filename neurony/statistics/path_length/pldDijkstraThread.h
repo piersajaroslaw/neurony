@@ -22,7 +22,7 @@
 #define PLDDIJKSTRATHREAD_H_
 
 #include "../../network/siecNeuronowa.h"
-#include "../../../src/BinaryHeap.h"
+#include "../../utils/BinaryHeap.h"
 
 
 /*

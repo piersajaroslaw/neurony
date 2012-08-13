@@ -11,7 +11,7 @@
 
 #include "spectrumEvolutionSaver.h"
 #include "../../network/siecNeuronowa.h"
-#include "../../../src/logger.h"
+#include "../../utils/logger.h"
 #include "spektrumGrafuLapack.h"
 
 #define LEN 255

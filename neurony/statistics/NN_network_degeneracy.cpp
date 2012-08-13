@@ -18,7 +18,6 @@
 
 #include "NN_network_degeneracy.h"
 
-#include "../../src/logger.h"
 
 NN_DegeneracyTester::NN_DegeneracyTester(SiecNeuronowa * n_):
 	n(n_)

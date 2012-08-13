@@ -37,7 +37,6 @@
 #include "siecNeuronowa.h"
 #include <cstdio>
 #include <cstdlib>
-#include "../../src/logger.h"
 //#include "parserKonfiguracji.h"
 
 
@@ -192,6 +191,7 @@ void SiecNeuronowa::opiszStanSieci(){
 	logJP<< "suma Ladunku      = "<< sumaLadunku <<"\n";
 	logJP<< "energia           = "<< energia <<"\n";
 	logJP<< "alpha             = "<< alpha<<"\n";
+	logJP<< "flowThreshold     = "<< conf->getKohonenChargeThreshold() <<"\n";
 	logJP<< "timestamp         = "<< timestamp <<"\n";
 
 }	// opiszStan

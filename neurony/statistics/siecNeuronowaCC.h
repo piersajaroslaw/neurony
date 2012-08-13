@@ -8,7 +8,7 @@
 #ifndef SIECNEURONOWACC_H_
 #define SIECNEURONOWACC_H_
 
-#include "../siecNeuronowaDynamika.h"
+#include "../dynamics/siecNeuronowaDynamika.h"
 
 class SiecNeuronowaCC{
 private:

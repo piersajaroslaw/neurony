@@ -32,8 +32,7 @@
  */
 
 #include "synapseEvolutionSaver.h"
-#include "../src/logger.h"
-#include "../src/funkcjeLosowe.h"
+#include "../utils/funkcjeLosowe.h"
 
 #define LEN 255
 

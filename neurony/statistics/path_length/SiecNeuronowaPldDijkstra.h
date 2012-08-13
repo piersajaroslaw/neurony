@@ -24,7 +24,7 @@
 #define SIECNEURONOWAPLDDIJKSTRA_H_
 
 #include <pthread.h>
-#include "../../siecNeuronowaDynamika.h"
+#include "../../dynamics/siecNeuronowaDynamika.h"
 #include "pldDijkstraThread.h"
 
 

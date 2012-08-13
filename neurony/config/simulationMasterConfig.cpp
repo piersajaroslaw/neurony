@@ -427,3 +427,11 @@ bool SimulationConfig::getCalculateNetworkDegeneracy(){
 void SimulationConfig::setCalculateNetworkDegeneracy(bool calculateNetworkDegeneracy) {
 	this->calculateNetworkDegeneracy = calculateNetworkDegeneracy;
 }
+
+bool SimulationConfig::getCalculateDegreeCorrelation(){
+	return calculateDegreeCorrelation;
+}
+
+void SimulationConfig::setCalculateDegreeCorrelation(bool val) {
+	this->calculateDegreeCorrelation = val;
+}

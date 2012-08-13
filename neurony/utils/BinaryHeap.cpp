@@ -24,7 +24,7 @@
 
 #include "BinaryHeap.h"
 #include <iostream>
-#include "../src/logger.h"
+#include "logger.h"
 
 BinaryHeap::BinaryHeap(int maxlen):
 	len(maxlen)

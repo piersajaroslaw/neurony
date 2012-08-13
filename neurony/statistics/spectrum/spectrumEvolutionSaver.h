@@ -12,7 +12,7 @@
 #define SPECTRUMEVOLUTIONSAVER_H_
 
 #include "../../network/siecNeuronowa.h"
-#include "../../fileWriter.h"
+#include "../../utils/fileWriter.h"
 
 class SpectrumEvolutionSaver{
 private:

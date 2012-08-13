@@ -9,7 +9,6 @@
 
 
 #include "siecNeuronowaRozkladStopni.h"
-#include "../../src/logger.h"
 
 inline double abs(double a){
 	return a >=0 ? a : -a;

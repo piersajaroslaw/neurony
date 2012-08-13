@@ -9,8 +9,7 @@
 #include<cstdlib>
 
 #include "verticesEvolutionSaver.h"
-#include "network/siecNeuronowa.h"
-#include "../src/logger.h"
+#include "../network/siecNeuronowa.h"
 
 #define LEN 255
 

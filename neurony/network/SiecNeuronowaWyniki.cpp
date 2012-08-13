@@ -45,9 +45,7 @@
 
 #include <cstdio>
 
-#include "network/siecNeuronowa.h"
-#include "pairOfInts.h"
-#include "../src/logger.h"
+#include "siecNeuronowa.h"
 
 
 /* ******************************************************

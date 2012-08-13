@@ -8,7 +8,7 @@
 
 
 #include "simulationConfigTxtParser.h"
-#include "../../src/logger.h"
+#include "../utils/logger.h"
 #include <cstdlib>
 #include <iostream>
 
@@ -247,5 +247,8 @@ void SimulationConfigTxtParser::setMasterConfigEntryResultsSettings(std::string 
 	}
 	if (paramname == "calculateNetworkDegeneracy"){
 		conf->setCalculateNetworkDegeneracy(atob(paramval));
+	}
+	if (paramname == "calculateDegreeCorrelation"){
+		conf->setCalculateDegreeCorrelation(atob(paramval));
 	}
 }	// setMasterConfigEntryResultsSettings()

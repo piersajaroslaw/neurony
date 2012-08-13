@@ -35,7 +35,6 @@
 #include <cstdlib>
 #include "NN_Failure_resiliency_path_length.h"
 #include "NN_Failure_resiliency_path_len_thread.h"
-#include "../../src/logger.h"
 
 
 NN_FailureResiliancyPathLength::NN_FailureResiliancyPathLength(SiecNeuronowa *n_, NN_FailureResiliancyTester * frt_):

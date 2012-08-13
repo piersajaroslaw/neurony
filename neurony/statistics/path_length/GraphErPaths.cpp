@@ -10,7 +10,7 @@
 #include "GraphErPaths.h"
 #include <cstdlib>
 #include <pthread.h>
-#include "../../../src/logger.h"
+#include "../../utils/logger.h"
 
 void * threadStartupErGraphs(void *);
 

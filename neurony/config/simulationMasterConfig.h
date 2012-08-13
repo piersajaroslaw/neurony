@@ -77,6 +77,7 @@ private:
 	bool calculateClasteringCoeffitientDistribution;
 	bool calculateFailureResiliency;
 	bool calculateNetworkDegeneracy;
+	bool calculateDegreeCorrelation;
 
 
 public:
@@ -159,8 +160,9 @@ public:
     void setKohonenChargeThreshold(long kohonenChargeThreshold);
 
     bool getCalculateNetworkDegeneracy();
-    void setCalculateNetworkDegeneracy(bool calculateNetworkDegeneracy);
-
+    void setCalculateNetworkDegeneracy(bool calculate);
+    bool getCalculateDegreeCorrelation();
+    void setCalculateDegreeCorrelation(bool calculateDegreeCorrelation);
 
 };
 

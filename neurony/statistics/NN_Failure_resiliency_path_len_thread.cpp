@@ -17,8 +17,6 @@
 
 
 #include "NN_Failure_resiliency_path_len_thread.h"
-#include "../../src/logger.h"
-
 #include <cstdlib>
 
 FailureResiliencyPathLength_Thread::FailureResiliencyPathLength_Thread(SiecNeuronowa *n_, NN_FailureResiliancyTester * frt_,
@@ -84,8 +82,8 @@ void FailureResiliencyPathLength_Thread::calculateAPL_vs_Attack_or_Random(bool f
 //		localStepskip /= 4;
 //	}	// fi
 
-	int thres1 = flagRandom ? n->getIloscNeuronow() / 2 : n->getIloscNeuronow() / 5; // double jumps below this
-	int thres2 = flagRandom ? 3 * n->getIloscNeuronow() / 4 : 1 * n->getIloscNeuronow() / 4; // half jumps above this
+	int thres1 = flagRandom ? n->getIloscNeuronow() / 2 : n->getIloscNeuronow() / 4; // double jumps below this
+	int thres2 = flagRandom ? 3 * n->getIloscNeuronow() / 4 : 3 * n->getIloscNeuronow() / 8; // half jumps above this
 
 //	double downratio = flagRandom ? 0.025 : 0.050;
 //	double upratio = flagRandom ? 0.001 : 0.002;

@@ -9,7 +9,7 @@
 #define GRAPHERDIJKSTRA_H_
 
 #include "../../GraphER.h"
-#include "../../../src/BinaryHeap.h"
+#include "../../utils/BinaryHeap.h"
 
 
 /* This class is ctrl+c-ctrl+v'ed from Dijkstra calcluation thread.
