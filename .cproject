@@ -34,6 +34,8 @@
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.426078079" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug">
 								<option id="gnu.cpp.link.option.libs.830511905" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
 									<listOptionValue builtIn="false" value="pthread"/>
+									<listOptionValue builtIn="false" value="lapack"/>
+									<listOptionValue builtIn="false" value="blas"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.678862479" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>

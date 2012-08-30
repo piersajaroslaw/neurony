@@ -559,6 +559,14 @@ void SiecNeuronowaDynamika::podsumujSymulacje(){
 	podsumujSymulacjeIlosciNeuronowZLadunkiem();
 	podsumujWynikiNaWsparciach();
 
+
+	for (int i=0; i<getIloscNeuronow(); i++){
+		int ind= n.getIndeksKrawedziMiedzyNeuronami(i,i);
+		if  (ind >=0){
+			Polaczenie &e = getKrawedz( ind );
+			logJP << i << " , " << e.getSumaLadunku() << "\n";
+		}	// fi
+	}	// for i
 }	// podsumujSymulacje
 
 /* podsumowanie wynikow symulacji

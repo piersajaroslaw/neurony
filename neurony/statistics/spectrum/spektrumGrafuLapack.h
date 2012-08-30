@@ -9,7 +9,7 @@
 #define SPEKTRUMGRAFULAPACK_H_
 
 #define WITH_LAPACK
-#undef WITH_LAPACK
+//#undef WITH_LAPACK
 
 /*
  * requires -llapack

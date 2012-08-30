@@ -9,13 +9,13 @@
  */
 
 
+#include "spektrumGrafuLapack.h"
 
 #ifdef  WITH_LAPACK
 
-#include "spektrumGrafuLapack.h"
 
-
-#include "../src/logger.h"
+#include "cstdio"
+#include "../../utils/logger.h"
 
 /* deklarujemy funkcje pochodzaca z biblioteki lapack
  *
@@ -161,32 +161,30 @@ float * getWartosciWlasneLapack(){
 }
 
 void zapiszWartosciWlasneLapack(SiecNeuronowa &n){
-	char buffer[80];
-	time_t rawtime;
-	struct tm * timeinfo;
-	time(&rawtime);
-	timeinfo = localtime(&rawtime);
+	char buffer[80], filename[80];
 
-	if (n.getConfig()->useTimestampInFilenames){
-		strftime(buffer, 80, "%s/r_%Y_%m_%d_%H_%M_%S_WartWlasne_Lapack.m",
-			n.getConfig()->getResultsFolder(),
-			timeinfo);
+	if (n.getConfig()->getUseTimestampInFilenames() == true) {
+		sprintf(filename, "%s/r_%s__%d_kn_%d_Me_%ldM_it_spectrum.m",
+				n.getConfig()->getResultsFolder(),
+				n.getTimestamp(),
+				n.getIloscNeuronow()/1000,
+				n.getIloscKrawedzi()/1000000,
+				n.getIloscIteracji() / 1000000
+				);
 	} else {
-		strftime(buffer, 80, "%s/WartWlasne_Lapack.m",
-					n.getConfig()->getResultsFolder());
-	}
+		sprintf(filename, "%s/spectrum.m", n.getConfig()->getResultsFolder());
+	}	// if .. else
 
 	std::fstream str;
-	str.open(buffer, std::fstream::out);
+	str.open(filename, std::fstream::out);
 
 	if (str == NULL) {
 		std::cerr << "zapiszWartościWlasneLapack() nie mozna utworzyc pliku\n\n";
 		return;
 	}
 
-	strftime(buffer, 80, "wyniki_WartWlasne_%Y_%m_%d_%H_%M_%S", timeinfo);
 
-	str << "# function ret = " << buffer << "()\n\n";
+	str << "# function ret = " << filename << "()\n\n";
 	str << "Y = [";
 
 	if (wartosciWlasne != NULL) {
@@ -218,10 +216,8 @@ void zapiszWartosciWlasneLapack(SiecNeuronowa &n){
 			<< "text(11, .17, S, \'fontsize\', 14);\n";
 
 
-	strftime(buffer, 80, "%Y_%m_%d", timeinfo);
-
 	str << "# print (\"/home/piersaj/Desktop/nn/"
-			<< buffer;
+			<< n.getTimestamp();
 
 	sprintf(buffer, "_WartWlasne_lapack_%.1fk_%.1fM_%.0dM---sort-loglog.svg",
 			n.getIloscNeuronow()/ 1000.0,
